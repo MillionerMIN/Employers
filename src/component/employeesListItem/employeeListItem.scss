@@ -51,15 +51,15 @@
       opacity: 1;
       transform: translateX(0px);
     }
-  }
+  } 
+}
 
-  .increase {
-    .list-group-item-label, .list-group-item-input {
-      color: #e09f3e;
-    }
-    .btn-star {
-      color: #aeaeae;
-    }
+.increase {
+  color: #e09f3e;
+  .list-group-item-label, .list-group-item-input {
+    color: #e09f3e;
   }
-
+  .btn-star {
+    color: #aeaeae;
+  }
 }
