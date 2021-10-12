@@ -6,13 +6,11 @@ import { AppFilter } from '../appFilter/appFilter';
 import { EmployeesList } from '../employeesList/employeesList';
 import { EmployeesAddForm } from '../employeesAddForm/employeesAddForm';
 
-
-
 function App() {
   const data = [
-    { name: 'John C.', salary: 1000, increase: false },
-    { name: 'Alex B.', salary: 1500, increase: false },
-    { name: 'Vladimir L.', salary: 10000, increase: true },
+    { id: 1, name: 'John C.', salary: 1000, increase: false },
+    { id: 2, name: 'Alex B.', salary: 1500, increase: false },
+    { id: 3, name: 'Vladimir L.', salary: 10000, increase: true },
   ];
   return (
     <div className="app">
