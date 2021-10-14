@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import './employeeListItem.scss';
 
 type EmployeesListItemType = {
+  id: string;
   name: string;
   salary: number;
   increase?: boolean;
+  deleteUser: (id: string) => void;
 };
 
 type StateType = {
@@ -38,7 +40,7 @@ export class EmployeesListItem extends Component<
   };
 
   render() {
-    const { name, salary } = this.props;
+    const { id, name, salary, deleteUser } = this.props;
     const { increase, like } = this.state;
     return (
       <li
@@ -65,7 +67,11 @@ export class EmployeesListItem extends Component<
             <i className="fas fa-cookie"></i>
           </button>
 
-          <button type="button" className="btn-trash btn-sm">
+          <button
+            type="button"
+            className="btn-trash btn-sm"
+            onClick={() => deleteUser(id)}
+          >
             <i className="fas fa-trash"></i>
           </button>
           <i className="fas fa-star"></i>

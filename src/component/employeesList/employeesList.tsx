@@ -3,27 +3,28 @@ import './employeesList.scss';
 
 type EmployeesListType = {
   data: {
-    id: number
+    id: string;
     name: string;
     salary: number;
     increase?: boolean;
   }[];
+  deleteUser: (id: string) => void;
 };
 
-
 export const EmployeesList = (props: EmployeesListType) => {
-  const {data} = props;
+  const { data, deleteUser } = props;
 
+  const elements = data.map((item) => {
+    const { id, ...itemProps } = item;
+    return (
+      <EmployeesListItem
+        key={id}
+        {...itemProps}
+        deleteUser={deleteUser}
+        id={id}
+      />
+    );
+  });
 
-const elements = data.map((item) => {
-  const {id, ...itemProps} = item
-return <EmployeesListItem key={id} {...itemProps} />;
-}
-        );
-
-  return (
-    <ul className="app-list list-group">
-      {elements}
-    </ul>
-  );
+  return <ul className="app-list list-group">{elements}</ul>;
 };
