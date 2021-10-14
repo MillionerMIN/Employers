@@ -4,9 +4,9 @@ import './employeeListItem.scss';
 type EmployeesListItemType = {
   id: string;
   name: string;
-  salary: number;
+  salary: string;
   increase?: boolean;
-  deleteUser: (id: string) => void;
+  deleteItem: (id: string) => void;
 };
 
 type StateType = {
@@ -40,7 +40,7 @@ export class EmployeesListItem extends Component<
   };
 
   render() {
-    const { id, name, salary, deleteUser } = this.props;
+    const { id, name, salary, deleteItem } = this.props;
     const { increase, like } = this.state;
     return (
       <li
@@ -70,7 +70,7 @@ export class EmployeesListItem extends Component<
           <button
             type="button"
             className="btn-trash btn-sm"
-            onClick={() => deleteUser(id)}
+            onClick={() => deleteItem(id)}
           >
             <i className="fas fa-trash"></i>
           </button>

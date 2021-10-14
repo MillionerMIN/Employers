@@ -5,14 +5,14 @@ type EmployeesListType = {
   data: {
     id: string;
     name: string;
-    salary: number;
+    salary: string;
     increase?: boolean;
   }[];
-  deleteUser: (id: string) => void;
+  deleteItem: (id: string) => void;
 };
 
 export const EmployeesList = (props: EmployeesListType) => {
-  const { data, deleteUser } = props;
+  const { data, deleteItem } = props;
 
   const elements = data.map((item) => {
     const { id, ...itemProps } = item;
@@ -20,7 +20,7 @@ export const EmployeesList = (props: EmployeesListType) => {
       <EmployeesListItem
         key={id}
         {...itemProps}
-        deleteUser={deleteUser}
+        deleteItem={deleteItem}
         id={id}
       />
     );

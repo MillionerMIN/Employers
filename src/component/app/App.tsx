@@ -10,11 +10,10 @@ import { EmployeesAddForm } from '../employeesAddForm/employeesAddForm';
 import './app.scss';
 import '../searchPanel/searchPanel.scss';
 
-
 export type UserType = {
   id: string;
   name: string;
-  salary: number;
+  salary: string;
   increase?: boolean;
 };
 
@@ -27,14 +26,28 @@ class App extends Component<any, AppStateType> {
     super(props);
     this.state = {
       data: [
-        { id: uuidv4(), name: 'John C.', salary: 1000, increase: false },
-        { id: uuidv4(), name: 'Alex B.', salary: 1500, increase: false },
-        { id: uuidv4(), name: 'Vladimir L.', salary: 10000, increase: true },
+        { id: uuidv4(), name: 'John C.', salary: '1000', increase: false },
+        { id: uuidv4(), name: 'Alex B.', salary: '1500', increase: false },
+        { id: uuidv4(), name: 'Vladimir L.', salary: '10000', increase: true },
       ],
     };
   }
 
-  deleteUser = (id: string) => {
+  addItem = (name: string, salary: string) => {
+    const newItem = {
+      id: uuidv4(),
+      name,
+      salary,
+      increase: false,
+    };
+    this.setState(({ data }) => {
+      return {
+        data: [...data, newItem],
+      };
+    });
+  };
+
+  deleteItem = (id: string) => {
     this.setState(({ data }) => {
       return {
         data: data.filter((item) => item.id !== id),
@@ -51,8 +64,8 @@ class App extends Component<any, AppStateType> {
           <SearchPanel />
           <AppFilter />
         </div>
-        <EmployeesList data={data} deleteUser={this.deleteUser} />
-        <EmployeesAddForm />
+        <EmployeesList data={data} deleteItem={this.deleteItem} />
+        <EmployeesAddForm onAddItem={this.addItem} />
       </div>
     );
   }
