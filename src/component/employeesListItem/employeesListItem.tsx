@@ -12,7 +12,7 @@ type StateType = {
   like: boolean;
 };
 
-export class EmployeesListItem extends React.Component<
+export class EmployeesListItem extends Component<
   EmployeesListItemType,
   StateType
 > {
@@ -25,6 +25,8 @@ export class EmployeesListItem extends React.Component<
   }
 
   onIncrease = () => {
+    console.log('click');
+
     this.setState(({ increase }) => ({
       increase: !increase,
     }));
@@ -41,9 +43,9 @@ export class EmployeesListItem extends React.Component<
     return (
       <li
         className={
-          'list-group-item d-flex justify-content-between like' +
-          `${increase && 'increase'}` +
-          `${like && ' like'}`
+          'list-group-item d-flex justify-content-between ' +
+          `${increase && ' increase '}` +
+          `${like && ' like '}`
         }
       >
         <span className="list-group-item-list" onClick={this.onLikeHandler}>
