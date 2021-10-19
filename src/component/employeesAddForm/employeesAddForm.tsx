@@ -1,4 +1,4 @@
-import React, { Component, FormEvent } from 'react';
+import { ChangeEvent, Component, FormEvent } from 'react';
 import './employeesAddForm.scss';
 
 type EmployeesAddFormType = {
@@ -8,6 +8,7 @@ type EmployeesAddFormType = {
 type StatePropsType = {
   name: string;
   salary: string;
+  errMessages: boolean;
 };
 
 export class EmployeesAddForm extends Component<
@@ -19,10 +20,11 @@ export class EmployeesAddForm extends Component<
     this.state = {
       name: '',
       salary: '',
+      errMessages: false,
     };
   }
 
-  onValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  onValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     //@ts-ignore
     this.setState({
       [e.currentTarget.name]: e.currentTarget.value,
@@ -31,19 +33,22 @@ export class EmployeesAddForm extends Component<
 
   onHandlerSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    this.props.onAddItem(this.state.name, this.state.salary)
+
+    if (this.state.name.length < 3 || !this.state.salary) return;
+    this.props.onAddItem(this.state.name, this.state.salary);
     this.setState({
       name: '',
-      salary: ''
-    })
+      salary: '',
+    });
   };
 
   render() {
-    
     const { name, salary } = this.state;
+
     return (
       <div className="app-add-form">
         <h3>Add new employee</h3>
+
         <form className="add-form d-flex" onSubmit={this.onHandlerSubmit}>
           <input
             type="text"

@@ -75,17 +75,6 @@ class App extends Component<any, AppStateType> {
     });
   };
 
-  // onToggleProp = (id: string, prop: any) => {
-  //   this.setState(({ data }) => {
-  //     return {
-  //       data: data.map((item) =>
-  //         //@ts-ignore
-  //         item.id === id ? { ...item, prop: !item.prop } : item
-  //       ),
-  //     };
-  //   });
-  // };
-
   onToggleIncrease = (id: string) => {
     this.setState(({ data }) => {
       return {
