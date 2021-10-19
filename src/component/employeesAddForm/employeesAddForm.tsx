@@ -8,7 +8,6 @@ type EmployeesAddFormType = {
 type StatePropsType = {
   name: string;
   salary: string;
-  errMessages: boolean;
 };
 
 export class EmployeesAddForm extends Component<
@@ -20,8 +19,7 @@ export class EmployeesAddForm extends Component<
     this.state = {
       name: '',
       salary: '',
-      errMessages: false,
-    };
+    }
   }
 
   onValueChange = (e: ChangeEvent<HTMLInputElement>) => {
